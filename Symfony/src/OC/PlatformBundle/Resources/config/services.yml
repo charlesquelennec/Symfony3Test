@@ -1,0 +1,14 @@
+
+services:
+
+#    oc_platform.antispam:
+#        oc_platform.antispam:
+#            class: OC\PlatformBundle\Antispam\OCAntispam
+#            arguments: ['@mailer', 50]
+#            calls:
+#                - [ setLocale, [ %locale% ] ]
+#
+#    sdz_blog.ckeditor:
+#        class: OC\PlatformBundle\Form\Type\CkeditorType
+#        tags:
+#            - { name: form.type, alias: ckeditor }

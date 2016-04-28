@@ -1,0 +1,31 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+
+services:
+
+    oc_platform.doctrine.notification:
+        class: OC\PlatformBundle\DoctrineListener\ApplicationNotification
+        arguments: ['@mailer']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    oc_platform.beta.html:
+        class: OC\PlatformBundle\Beta\BetaListener
+#        arguments: ['@oc_platform.beta.html', "2013-10-20"]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.response, method: processBeta }
+#            - { name: kernel.event_listener, event: kernel.controller, method: ignoreBeta }
+    my.listener:
+        class: OC\PlatformBundle\EventListener\SearchIndexer
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    stof_doctrine_extensions.listener.sluggable:
+        class: %stof_doctrine_extensions.listener.sluggable.class%
+        public: false
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [setAnnotationReader, ['@annotation_reader']]
+            - [setTransliterator, [[OC\PlatformBundle\Service\Slugger, transliterate]]]
+            - [setUrlizer, [[OC\PlatformBundle\Service\Slugger, urlize]]]

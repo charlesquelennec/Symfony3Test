@@ -1,0 +1,8 @@
+
+oc_user_home:
+    path:      /login
+    defaults:  { _controller: OCUserBundle:Security:login }
+
+oc_user_login:
+    path:      /login_check
+    defaults:  { _controller: OCUserBundle:Security:login_check }

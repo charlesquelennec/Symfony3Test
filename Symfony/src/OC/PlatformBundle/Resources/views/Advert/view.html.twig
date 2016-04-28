@@ -1,0 +1,36 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bienvenue sur ma première page avec OpenClassrooms !</title>
+    </head>
+    <body>
+    <h1>Affichage d'une annonce</h1>
+
+    <p>
+        {# On affiche tous les messages flash dont le nom est « info » #}
+        {% for message in app.session.flashbag.get('info') %}
+    <p>Message flash : {{ message }}</p>
+    {% endfor %}
+    </p>
+
+
+{% if not advert.categories.empty %}
+
+    <p>
+
+        Cette annonce est parue dans les catégories suivantes :
+
+        {% for category in advert.categories %}
+
+            {{ category.name }}{% if not loop.last %}, {% endif %}
+
+        {% endfor %}
+
+    </p>
+
+{% endif %}
+
+    </body>
+</html>
